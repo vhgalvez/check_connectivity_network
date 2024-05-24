@@ -14,7 +14,7 @@ sudo chmod +x check_connectivity.sh
 2. Ejecuta el script:
 
 ```bash
-./check_connectivity.sh
+sudo ./check_connectivity.sh
 ```
 
 ## Funcionamiento
