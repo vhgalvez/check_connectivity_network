@@ -8,13 +8,13 @@ Este script de bash (`verificar_conectividad.sh`) realiza un ping a una lista de
 1. Asegúrate de tener permisos de ejecución para el script:
 
 ```bash
-chmod +x verificar_conectividad.sh
+sudo chmod +x check_connectivity.sh
 ```
 
 2. Ejecuta el script:
 
 ```bash
-./verificar_conectividad.sh
+./check_connectivity.sh
 ```
 
 ## Funcionamiento
