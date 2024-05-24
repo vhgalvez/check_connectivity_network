@@ -1,3 +1,4 @@
+
 # Script de Verificación de Conectividad
 
 Este script de bash (`verificar_conectividad.sh`) realiza un ping a una lista de direcciones IP y registra los resultados en un archivo de reporte. Además, muestra una barra de progreso para indicar el avance del proceso.
@@ -10,11 +11,7 @@ Este script de bash (`verificar_conectividad.sh`) realiza un ping a una lista de
 chmod +x verificar_conectividad.sh
 ```
 
-./verificar_conectividad.sh
-
-
 2. Ejecuta el script:
-
 
 ```bash
 ./verificar_conectividad.sh

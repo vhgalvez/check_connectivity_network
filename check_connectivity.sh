@@ -29,11 +29,11 @@ show_progress() {
     local total=$2
     local percent=$(( progress * 100 / total ))
     local bar=""
-
+    
     for ((i = 0; i < percent; i += 2)); do
         bar="${bar}#"   # Se construye una barra de progreso basada en el porcentaje completado
     done
-
+    
     printf "\r[%-50s] %d%%" "$bar" "$percent"   # Se muestra la barra de progreso en la consola
 }
 
