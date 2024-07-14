@@ -58,7 +58,8 @@ total_ips=${#ips[@]}
 i=0
 for ip in "${!ips[@]}"; do
     ping_and_log "$ip" "${ips[$ip]}"
-    show_progress $((++i)) $total_ips
+    show_progress $((i + 1)) $total_ips
+    ((i++))
 done
 
 echo
