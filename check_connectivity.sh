@@ -11,7 +11,7 @@ echo -e "IP Address\t\tStatus" >> "$reporte"
 echo -e "----------\t\t------" >> "$reporte"
 
 # Lista de direcciones IP
-ips=("192.168.0.20" "10.17.4.20" "10.17.3.11" "10.17.4.1" "10.17.3.1" "8.8.8.8")
+ips=("192.168.0.20" "10.17.4.21" "10.17.3.11" "10.17.4.1" "10.17.3.1" "8.8.8.8")
 
 # Función para hacer ping y guardar errores
 ping_and_log() {
