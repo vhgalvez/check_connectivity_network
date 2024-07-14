@@ -7,35 +7,19 @@ reporte="reporte_conectividad.log"
 > "$reporte"
 
 # Encabezado de la tabla
-echo -e "IP Address\t\tHostname\t\t\tStatus" >> "$reporte"
-echo -e "----------\t\t--------\t\t\t------" >> "$reporte"
+echo -e "IP Address\t\tStatus" >> "$reporte"
+echo -e "----------\t\t------" >> "$reporte"
 
-# Lista de direcciones IP y sus nombres de host correspondientes
-declare -A ips=(
-    ["10.17.4.21"]="master1.cefaslocalserver.com"
-    ["10.17.4.22"]="master2.cefaslocalserver.com"
-    ["10.17.4.23"]="master3.cefaslocalserver.com"
-    ["10.17.4.24"]="worker1.cefaslocalserver.com"
-    ["10.17.4.25"]="worker2.cefaslocalserver.com"
-    ["10.17.4.26"]="worker3.cefaslocalserver.com"
-    ["10.17.3.11"]="freeipa1.cefaslocalserver.com"
-    ["10.17.3.12"]="loadbalancer1.cefaslocalserver.com"
-    ["10.17.3.13"]="postgresql1.cefaslocalserver.com"
-    ["10.17.3.14"]="bootstrap1.cefaslocalserver.com"
-    ["10.17.4.1"]="virbr1 (gateway)"
-    ["10.17.3.1"]="virbr0 (gateway)"
-    ["8.8.8.8"]="Google DNS"
-    ["192.168.0.20"]="bastion1.cefaslocalserver.com"
-)
+# Lista de direcciones IP
+ips=("192.168.0.20" "10.17.4.21" "10.17.3.11" "10.17.4.1" "10.17.3.1" "8.8.8.8")
 
 # Función para hacer ping y guardar errores
 ping_and_log() {
     local ip=$1
-    local name=$2
     if ping -c 4 "$ip" > /dev/null 2>> "$reporte"; then
-        echo -e "$ip\t\t$name\t\tSuccess" >> "$reporte"
+        echo -e "$ip\t\tSuccess" >> "$reporte"
     else
-        echo -e "$ip\t\t$name\t\tFailed" >> "$reporte"
+        echo -e "$ip\t\tFailed" >> "$reporte"
     fi
 }
 
@@ -46,7 +30,7 @@ show_progress() {
     local percent=$(( progress * 100 / total ))
     local bar=""
     
-    for ((i = 0; i < percent / 2; i++)); do
+    for ((i = 0; i < percent; i += 2)); do
         bar="${bar}#"
     done
     
@@ -55,11 +39,9 @@ show_progress() {
 
 # Realizar pings y registrar resultados en la tabla con barra de progreso
 total_ips=${#ips[@]}
-i=0
-for ip in "${!ips[@]}"; do
-    ping_and_log "$ip" "${ips[$ip]}"
+for i in "${!ips[@]}"; do
+    ping_and_log "${ips[$i]}"
     show_progress $((i + 1)) $total_ips
-    ((i++))
 done
 
 echo
