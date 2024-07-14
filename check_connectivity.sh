@@ -46,7 +46,7 @@ show_progress() {
     local percent=$(( progress * 100 / total ))
     local bar=""
     
-    for ((i = 0; i < percent; i += 2)); do
+    for ((i = 0; i < percent / 2; i++)); do
         bar="${bar}#"
     done
     
